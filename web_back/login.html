@@ -29,8 +29,53 @@
             </form>
         </div>
 
-    </div> 
+    </div>
 
 </body>
 
 </html>
+<script src="./js/jquery-1.12.4.min.js"></script>
+<script>
+    /*
+          用户登录
+          1. 为登录按钮绑定点击事件
+          2. 获取用户名 和 密码
+              1. 去空格
+              2. 非空判断
+              3. 空 提示
+              4. 有 继续执行
+          3. ajax调用登录接口
+              1. 成功
+                  1. 去首页
+              2. 失败
+                  1. 提示用户
+      */
+
+    $(function () {
+        $('.input_sub').click(function (e) {
+            e.preventDefault()
+            //获取用户名
+            var user_name = $('.input_txt').val().trim()
+            //获取密码
+            var password = $('.input_pass').val().trim()
+            if (user_name == '' || password == '') {
+                alert('您输入的账号密码为空')
+                return
+            }
+            //调用ajax
+            $.ajax({
+                url: 'https://autumnfish.cn/big/admin/login',
+                type: 'post',
+                data: {
+                    user_name=user_name,
+                    password=password
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data.)
+
+                }
+            })
+        })
+    })
+</script>
