@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/iconfont.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-1.12.4.min.js"></script>
+    <!-- bootstrap的js -->
+    <script src="./js/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -59,7 +61,31 @@
             scrolling="auto"></iframe>
     </div>
 
-
+    <!-- 模态框 -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">提示框！！</h4>
+                </div>
+                <div class="modal-body">
+                    你真的要离开吗？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        残忍留下
+                    </button>
+                    <button type="button" class="btn btn-primary btn-leave">
+                        开心离开
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         var $level01 = $('.level01');
@@ -114,3 +140,34 @@
 </body>
 
 </html>
+<script>
+
+    /*
+          用户登出
+              1. 退出按钮绑定点击事件
+              2. 弹出bootstrap的模态框 提示是否确认
+                  1. 取消 关闭
+                  2. 确认
+                      1. ajax调用接口
+                      2. 数据回来之后 返回登录页即可
+      */
+    $(function () {
+        $('.icon-tuichu').parent().click(function () {
+            $('#myModal').modal()
+        })
+
+
+        //点击确认
+        $('.btn-leave').click(function () {
+            $.ajax({
+                url: 'https://autumnfish.cn/big/admin/logout',
+                type: 'post',
+                success: function (data) {
+                    if (data.code == 200) {
+                        window.location.href = './login.html'
+                    }
+                }
+            })
+        })
+    })
+</script>

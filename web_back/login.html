@@ -95,7 +95,6 @@
                 // alert('您输入的账号密码为空')
                 $('.my-modal-body').text('请输入用户名和密码')
                 $('#myModal').modal()
-
                 return
             }
             //调用ajax
@@ -112,7 +111,7 @@
                         // alert('用户名或密码错误')
                         $('.my-modal-body').text('账号或密码错误！')
                         $('#myModal').modal()
-
+                        $('.btn-primary').hide()
                     } else if (data.code == 200) {
                         window.location.href = './index.html'
                     }
